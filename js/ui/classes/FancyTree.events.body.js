@@ -49,6 +49,7 @@ FancyTree.prototype.onDocumentKeyDown = function(b) {
   var a = b.data.treeObj;
   if (a.filterBoxShown && 70 == b.keyCode && (b.ctrlKey||b.metaKey)) return a.filterElem.children(".ftFilterInput").focus(), !1;
   // if (67 == b.keyCode && (b.ctrlKey||b.metaKey)) return alert("test"), !1;
+  if (87 == b.keyCode && (b.ctrlKey||b.metaKey)) return alert("close"), !1;
   if (27 == b.keyCode) {
     if (a.filterBoxShown && (a.filterElem.children(".ftFilterInput").val("").trigger("keyup"), a.filtering = !1, a.filterElem.children(".ftFilterInput").is(":focus"))) return a.filterElem.children(".ftFilterInput").blur(), !0;
     a.contextMenuShown && a.disableContextMenu.call(a);
