@@ -15,7 +15,7 @@ FancyTree.prototype.rowMouseUpHandler = function(b) {
       a.hideTooltip();
       if (2 == b.which) b.data.onMiddleClick && (a.contextMenuShown && a.disableContextMenu.call(a), b.data.onMiddleClick(b));
       else if (1 == b.which)
-        if (b.ctrlKey || b.shiftKey) a.contextMenuShown && a.disableContextMenu.call(a), a.rowMultiSelectionClickHandler(b);
+        if ((b.ctrlKey||b.metaKey) || b.shiftKey) a.contextMenuShown && a.disableContextMenu.call(a), a.rowMultiSelectionClickHandler(b);
         else if (a.contextMenuShown && (a.clearMultiSelection.call(a),
           a.disableContextMenu.call(a)), a.clearMultiSelection(), !1 !== b.data.autofocusOnClick && a.focusRow(c), b.data.onClick) {
         var d = b.data;
@@ -35,7 +35,7 @@ FancyTree.prototype.rowMultiSelectionClickHandler = function(b) {
       a = a.attr("id"),
       g = c.getRow(e),
       f = c.getRow(a);
-    if (b.ctrlKey) {
+    if (b.ctrlKey||b.metaKey) {
       c.lastMultiSelectedFromId = null;
       if (b.shiftKey) c.addMultiSelectionBetween(g, f);
       else {
@@ -51,7 +51,7 @@ FancyTree.prototype.rowMultiSelectionClickHandler = function(b) {
   }
 };
 FancyTree.prototype.rowDoubleClickHandler = function(b) {
-  if (1 == b.which && !b.ctrlKey && !b.shiftKey) {
+  if (1 == b.which && !(b.ctrlKey||b.metaKey) && !b.shiftKey) {
     var a = b.data.treeObj;
     if (!a.ignoreDoubleClickEvent) {
       var c = $(this),

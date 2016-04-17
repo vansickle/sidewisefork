@@ -37,7 +37,7 @@ FancyTree.prototype.onItemRowMouseEnter = function(b) {
   a.startTooltipTimer(c, b);
   0 <= a.clickOnHoverDelayMs && d.allowClickOnHover && (a.clickOnHoverTimer && clearTimeout(a.clickOnHoverTimer),
     a.clickOnHoverTimer = setTimeout(function() {
-      if (!b.shiftKey && !b.ctrlKey && !(a.contextMenuShown || 1 < a.multiSelection.length))
+      if (!b.shiftKey && !(b.ctrlKey||b.metaKey) && !(a.contextMenuShown || 1 < a.multiSelection.length))
         if (!1 !== b.data.autofocusOnClick && a.focusRow(c), d.onClick) {
           var e = b.data;
           a.resetDragDropState(function() {

@@ -86,7 +86,7 @@ FancyTree.prototype.draggableStart = function(c) {
   var e = d.hasClass("ftCollapsed"),
     f = 0;
   a.dragAutoSelectedChildren = !1;
-  if (c.ctrlKey) a.clearMultiSelection.call(a), a.toggleMultiSelectionSingle.call(a, d, !0), a.dragToreOffParent = !0;
+  if (c.ctrlKey||c.metaKey) a.clearMultiSelection.call(a), a.toggleMultiSelectionSingle.call(a, d, !0), a.dragToreOffParent = !0;
   else {
     a.dragToreOffParent = !1;
     if (0 == a.multiSelection.length || !d.hasClass("ftSelected")) a.clearMultiSelection.call(a), a.toggleMultiSelectionSingle.call(a, d, !0), a.dragSelectedCollapsedRow = e, !e && (a.autoSelectChildrenOnDrag && b.permitAutoSelectChildren) && d.children(".ftChildren").find(".ftRowNode").each(function(b, c) {
@@ -171,7 +171,7 @@ FancyTree.prototype.onItemRowDrop = function() {
 };
 FancyTree.prototype.updateDragHelper = function(c, a) {
   var b = "";
-  c.ctrlKey ? b = "Dragging hovered row." : c.shiftKey ? b = "Autoselected children." : this.autoSelectChildrenOnDrag && this.dragAutoSelectedChildren ? b = "Ctrl+drag: drag just the hovered row." : this.autoSelectChildrenOnDrag || (b = "Shift+drag: also drag all children rows.");
+  (c.ctrlKey||c.metaKey) ? b = "Dragging hovered row." : c.shiftKey ? b = "Autoselected children." : this.autoSelectChildrenOnDrag && this.dragAutoSelectedChildren ? b = "Ctrl+drag: drag just the hovered row." : this.autoSelectChildrenOnDrag || (b = "Shift+drag: also drag all children rows.");
   b += (b ? "<br/>" : "") + "Hit Esc to cancel.";
   $(".ftDragHelper").html('<div class="ftDragHelperMessage">Moving ' + this.multiSelection.length + " row" + (1 == this.multiSelection.length ? "" : "s") + (0 < a ? " (" +
     a + " hidden)" : "") + '</div><div class="ftDragHelperFooter">' + b + "</div>")

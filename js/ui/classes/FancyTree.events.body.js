@@ -47,14 +47,15 @@ FancyTree.prototype.bodyMouseWheelHandler = function(b, a) {
 };
 FancyTree.prototype.onDocumentKeyDown = function(b) {
   var a = b.data.treeObj;
-  if (a.filterBoxShown && 70 == b.keyCode && b.ctrlKey) return a.filterElem.children(".ftFilterInput").focus(), !1;
+  if (a.filterBoxShown && 70 == b.keyCode && (b.ctrlKey||b.metaKey)) return a.filterElem.children(".ftFilterInput").focus(), !1;
+  // if (67 == b.keyCode && (b.ctrlKey||b.metaKey)) return alert("test"), !1;
   if (27 == b.keyCode) {
     if (a.filterBoxShown && (a.filterElem.children(".ftFilterInput").val("").trigger("keyup"), a.filtering = !1, a.filterElem.children(".ftFilterInput").is(":focus"))) return a.filterElem.children(".ftFilterInput").blur(), !0;
     a.contextMenuShown && a.disableContextMenu.call(a);
     a.dragging && (a.ignoreNextRowMouseUpEvent = !0, a.resetDragDropState());
     return !1
   }
-  if (b.ctrlKey || b.altKey) return !0;
+  if ((b.ctrlKey||b.metaKey) || b.altKey) return !0;
   if (a.filterBoxShown && 48 <= b.keyCode && 90 >= b.keyCode) {
     if (a.filterElem.children(".ftFilterInput").is(":focus")) return !0;
     setTimeout(function() {

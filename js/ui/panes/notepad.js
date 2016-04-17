@@ -18,7 +18,7 @@ function onNotepadKeyUp() {
 
 function onNotepadKeyDown(a) {
   if (9 == a.keyCode) return a.stopPropagation(), $("#notepad").insertAtCaret(TAB_INSERT_STRING), !1;
-  if (83 == a.keyCode && a.ctrlKey) return saveNotepad(), a.stopPropagation(), !1
+  if (83 == a.keyCode && (a.ctrlKey||a.metaKey)) return saveNotepad(), a.stopPropagation(), !1
 }
 
 function saveNotepad() {
