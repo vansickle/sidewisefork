@@ -331,6 +331,22 @@ function onContextMenuItemCopyURL($rows) {
   });
 }
 
+function onContextMenuItemCopyBranchInfo($rows) {
+  var urls = $rows.map(function(i, e) {
+    var $e = $(e);
+    if ($e.attr('rowtype') != 'page') {
+      return;
+    }
+    return $e.attr('text') + '\n' + $e.attr('url');
+  });
+
+  copyTextToClipboard(urls.toArray().join('\n\n'));
+
+  ft.resetDragDropState(function() {
+    alert(urls.length + ' URL(s) copied to clipboard.');
+  });
+}
+
 function onContextMenuItemCopyId($rows) {
   var ids = $rows.map(function(i, e) {
     return $(e).attr('id');

@@ -520,6 +520,14 @@ function onContextMenuShow(b) {
     callback: onContextMenuItemCopyURL,
     preserveSelectionAfter: !0
   });
+  0 < c.length && a.push({
+    $rows: g,
+    id: "copyBranchInfo",
+    icon: "/images/copy_url.png",
+    label: "Copy Branch Info",
+    callback: onContextMenuItemCopyBranchInfo,
+    preserveSelectionAfter: !0
+  });
   bg.loggingEnabled && a.push({
     $rows: b,
     id: "copyId",
